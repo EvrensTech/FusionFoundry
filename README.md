@@ -200,7 +200,6 @@ Detaylı bilgi, FusionFoundry geliştirme talepleri, mevcut bir Unity projesinin
 
 FusionFoundry is part of the Unity technical demo portfolio developed by **Evrens Tech**. Its purpose is not limited to presenting a sample multiplayer scene. It demonstrates, through a working system, the technical capability required to provide multiplayer conversion, network architecture, player lifecycle, and project-based development support for existing Unity projects.
 
-This repository was created for the **Software Partnership** business line of Evrens Tech. The demo serves as a concrete reference for content production, technical evaluations, and prospective client discussions.
 
 ## What does the demo show?
 
@@ -219,7 +218,6 @@ Sessions can be joined by code but are not listed in a public lobby. Clients are
 
 ## Role within Evrens Tech
 
-FusionFoundry is the Unity multiplayer demo in the Evrens Tech workflow: “develop a demo → turn it into content → connect it to a relevant service → convert interest into a client conversation.”
 
 The project acts as technical evidence and a starting point for the following services:
 
