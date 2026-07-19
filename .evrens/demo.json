@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "slug": "fusion-multiplayer-room",
+  "category": "unity",
+  "salesTrack": "unity_support",
+  "content": {
+    "tr": {
+      "title": "Fusion Multiplayer Oda Akışı",
+      "summary": "Oda oluşturma ve katılma akışını gösteren çalışan Unity demosu.",
+      "problem": "Mevcut projede tekrar kullanılabilir multiplayer lobby akışı bulunmuyor.",
+      "solution": "Fusion tabanlı oda yaşam döngüsü ve senkronizasyon katmanı.",
+      "targetAudience": "Unity kullanan oyun ekipleri",
+      "serviceScope": "İnceleme, entegrasyon ve proje uyarlaması",
+      "adaptationOptions": "Mevcut kullanıcı, lobby ve oyun durumu yapısına uyarlanabilir."
+    },
+    "en": {
+      "title": "Fusion Multiplayer Room Flow",
+      "summary": "A working Unity demo for room creation and joining."
+    }
+  },
+  "technologies": ["Unity", "Fusion 2"],
+  "industries": ["game-development"],
+  "demo": {
+    "liveUrl": "",
+    "video": {
+      "provider": "",
+      "url": "",
+      "durationSeconds": 0
+    },
+    "coverImageUrl": ""
+  },
+  "seo": {
+    "tr": {
+      "title": "Unity Fusion Multiplayer Oda Demosu",
+      "description": "Fusion ile oda oluşturma ve katılma akışını inceleyin."
+    },
+    "en": {
+      "title": "Unity Fusion Multiplayer Room Demo",
+      "description": "Review a working Fusion room creation and join flow."
+    }
+  }
+}
