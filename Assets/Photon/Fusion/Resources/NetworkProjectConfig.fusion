@@ -93,7 +93,9 @@
     },
     "AssembliesToWeave": [
         "Assembly-CSharp",
-        "Assembly-CSharp-firstpass"
+        "Assembly-CSharp-firstpass",
+        "FusionFoundry.Runtime",
+        "FusionFoundry.Samples.BasicHostClient"
     ],
     "UseSerializableDictionary": true,
     "NullChecksForNetworkedProperties": true,

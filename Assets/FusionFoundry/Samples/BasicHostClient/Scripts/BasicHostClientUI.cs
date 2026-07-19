@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FusionFoundry.Bootstrap;
 using FusionFoundry.Sessions;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace FusionFoundry.Samples.BasicHostClient
@@ -14,7 +15,13 @@ namespace FusionFoundry.Samples.BasicHostClient
         [SerializeField]
         private FusionBootstrap bootstrap;
 
+        [SerializeField]
+        private ThirdPersonCameraRig cameraRig;
+
         [Header("Panels")]
+        [SerializeField]
+        private GameObject backdrop;
+
         [SerializeField]
         private GameObject mainPanel;
 
@@ -31,6 +38,9 @@ namespace FusionFoundry.Samples.BasicHostClient
         private GameObject roomCodePanel;
 
         [SerializeField]
+        private GameObject mouseLookHint;
+
+        [SerializeField]
         private GameObject errorPanel;
 
         [Header("Inputs and Labels")]
@@ -45,6 +55,9 @@ namespace FusionFoundry.Samples.BasicHostClient
 
         [SerializeField]
         private Text roomCodeText;
+
+        [SerializeField]
+        private Text mouseLookHintText;
 
         [SerializeField]
         private Text errorText;
@@ -145,6 +158,30 @@ namespace FusionFoundry.Samples.BasicHostClient
             _operationInFlight = false;
         }
 
+        private void Update()
+        {
+            var leaveRequested =
+                Keyboard.current != null &&
+                Keyboard.current.escapeKey.wasPressedThisFrame;
+
+            leaveRequested |=
+                Gamepad.current != null &&
+                Gamepad.current.startButton.wasPressedThisFrame;
+
+            if (!_operationInFlight &&
+                bootstrap != null &&
+                bootstrap.State == FusionSessionState.Running &&
+                leaveRequested)
+            {
+                HandleLeaveClicked();
+            }
+
+            if (mouseLookHint != null && mouseLookHint.activeSelf)
+            {
+                UpdateMouseLookHint();
+            }
+        }
+
         private async void HandleCreateClicked()
         {
             if (_operationInFlight)
@@ -207,7 +244,7 @@ namespace FusionFoundry.Samples.BasicHostClient
 
             _operationInFlight = true;
             SetControlsInteractable(false);
-            ShowConnecting("Leaving room...");
+            ShowSessionHud();
             var generation = _lifecycleGeneration;
 
             try
@@ -277,7 +314,7 @@ namespace FusionFoundry.Samples.BasicHostClient
 
             if (result.IsSuccess)
             {
-                ShowRunningSession();
+                ShowSessionHud();
                 return;
             }
 
@@ -298,16 +335,20 @@ namespace FusionFoundry.Samples.BasicHostClient
             var references = new UnityEngine.Object[]
             {
                 bootstrap,
+                cameraRig,
+                backdrop,
                 mainPanel,
                 joinPanel,
                 connectingPanel,
                 sessionPanel,
                 roomCodePanel,
+                mouseLookHint,
                 errorPanel,
                 roomCodeInput,
                 connectingText,
                 sessionStatusText,
                 roomCodeText,
+                mouseLookHintText,
                 errorText,
                 createButton,
                 openJoinButton,
@@ -349,10 +390,10 @@ namespace FusionFoundry.Samples.BasicHostClient
                     ShowConnecting("Connecting...");
                     break;
                 case FusionSessionState.Running:
-                    ShowRunningSession();
+                    ShowSessionHud();
                     break;
                 case FusionSessionState.Stopping:
-                    ShowConnecting("Leaving room...");
+                    ShowSessionHud();
                     break;
                 case FusionSessionState.Idle:
                     if (_operationInFlight)
@@ -378,10 +419,10 @@ namespace FusionFoundry.Samples.BasicHostClient
                     ShowConnecting("Connecting...");
                     break;
                 case FusionSessionState.Running:
-                    ShowRunningSession();
+                    ShowSessionHud();
                     break;
                 case FusionSessionState.Stopping:
-                    ShowConnecting("Leaving room...");
+                    ShowSessionHud();
                     break;
                 default:
                     ShowMainMenu();
@@ -391,46 +432,64 @@ namespace FusionFoundry.Samples.BasicHostClient
 
         private void ShowMainMenu()
         {
+            backdrop.SetActive(true);
             mainPanel.SetActive(true);
             joinPanel.SetActive(false);
             connectingPanel.SetActive(false);
             sessionPanel.SetActive(false);
             roomCodePanel.SetActive(false);
+            mouseLookHint.SetActive(false);
         }
 
         private void ShowJoinMenu()
         {
+            backdrop.SetActive(true);
             mainPanel.SetActive(false);
             joinPanel.SetActive(true);
             connectingPanel.SetActive(false);
             sessionPanel.SetActive(false);
             roomCodePanel.SetActive(false);
+            mouseLookHint.SetActive(false);
         }
 
         private void ShowConnecting(string message)
         {
             connectingText.text = message;
+            backdrop.SetActive(true);
             mainPanel.SetActive(false);
             joinPanel.SetActive(false);
             connectingPanel.SetActive(true);
             sessionPanel.SetActive(false);
             roomCodePanel.SetActive(false);
+            mouseLookHint.SetActive(false);
         }
 
-        private void ShowRunningSession()
+        private void ShowSessionHud()
         {
+            backdrop.SetActive(false);
             mainPanel.SetActive(false);
             joinPanel.SetActive(false);
             connectingPanel.SetActive(false);
-            sessionPanel.SetActive(true);
+            sessionPanel.SetActive(false);
+            errorPanel.SetActive(false);
 
             sessionStatusText.text = _isHosting
                 ? "Room created. Share the code with another player."
                 : "Connected to room.";
 
-            var showRoomCode = _isHosting && !string.IsNullOrEmpty(bootstrap.ActiveRoomCode);
+            var showRoomCode = !string.IsNullOrEmpty(bootstrap.ActiveRoomCode);
             roomCodePanel.SetActive(showRoomCode);
             roomCodeText.text = showRoomCode ? bootstrap.ActiveRoomCode : string.Empty;
+            mouseLookHint.SetActive(true);
+            UpdateMouseLookHint();
+        }
+
+        private void UpdateMouseLookHint()
+        {
+            mouseLookHintText.text = string.Concat(
+                ThirdPersonCameraRig.MouseLookToggleKeyLabel,
+                "  Mouse Look: ",
+                cameraRig.IsMouseLookEnabled ? "ON" : "OFF");
         }
 
         private void ShowError(string message)

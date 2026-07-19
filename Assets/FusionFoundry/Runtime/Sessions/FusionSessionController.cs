@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Fusion;
-using Fusion.Sockets;
 using UnityEngine;
 
 namespace FusionFoundry.Sessions
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(NetworkRunner))]
-    public class FusionSessionController : MonoBehaviour, INetworkRunnerCallbacks
+    public class FusionSessionController : NetworkRunnerCallbacksBehaviour
     {
         private NetworkRunner _runner;
         private NetworkSceneManagerDefault _sceneManager;
@@ -33,12 +31,14 @@ namespace FusionFoundry.Sessions
             }
         }
 
-        protected virtual void OnDestroy()
+        protected override void OnDestroy()
         {
             if (_runner != null)
             {
                 _runner.RemoveCallbacks(this);
             }
+
+            base.OnDestroy();
         }
 
         public virtual async Task<FusionSessionStartResult> StartSessionAsync(
@@ -195,115 +195,9 @@ namespace FusionFoundry.Sessions
             }
         }
 
-        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+        public override void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
             NotifyShutdownOccurred();
         }
-
-        public void OnObjectExitAOI(
-            NetworkRunner runner,
-            NetworkObject networkObject,
-            PlayerRef player)
-        {
-        }
-
-        public void OnObjectEnterAOI(
-            NetworkRunner runner,
-            NetworkObject networkObject,
-            PlayerRef player)
-        {
-        }
-
-        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-        {
-        }
-
-        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-        {
-        }
-
-        public void OnDisconnectedFromServer(
-            NetworkRunner runner,
-            NetDisconnectReason reason)
-        {
-        }
-
-        public void OnConnectRequest(
-            NetworkRunner runner,
-            NetworkRunnerCallbackArgs.ConnectRequest request,
-            byte[] token)
-        {
-        }
-
-        public void OnConnectFailed(
-            NetworkRunner runner,
-            NetAddress remoteAddress,
-            NetConnectFailedReason reason)
-        {
-        }
-
-        public void OnUserSimulationMessage(
-            NetworkRunner runner,
-            SimulationMessagePtr message)
-        {
-        }
-
-        public void OnReliableDataReceived(
-            NetworkRunner runner,
-            PlayerRef player,
-            ReliableKey key,
-            ReadOnlySpan<byte> data)
-        {
-        }
-
-        public void OnReliableDataProgress(
-            NetworkRunner runner,
-            PlayerRef player,
-            ReliableKey key,
-            float progress)
-        {
-        }
-
-        public void OnInput(NetworkRunner runner, NetworkInput input)
-        {
-        }
-
-        public void OnInputMissing(
-            NetworkRunner runner,
-            PlayerRef player,
-            NetworkInput input)
-        {
-        }
-
-        public void OnConnectedToServer(NetworkRunner runner)
-        {
-        }
-
-        public void OnSessionListUpdated(
-            NetworkRunner runner,
-            List<SessionInfo> sessionList)
-        {
-        }
-
-        public void OnCustomAuthenticationResponse(
-            NetworkRunner runner,
-            Dictionary<string, object> data)
-        {
-        }
-
-        public void OnHostMigration(
-            NetworkRunner runner,
-            HostMigrationToken hostMigrationToken)
-        {
-        }
-
-        public void OnSceneLoadDone(NetworkRunner runner)
-        {
-        }
-
-        public void OnSceneLoadStart(NetworkRunner runner)
-        {
-        }
     }
 }
-

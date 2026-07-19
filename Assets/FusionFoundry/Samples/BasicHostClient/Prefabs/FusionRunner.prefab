@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6295651430311155526}
   - component: {fileID: 7899659314295472871}
   - component: {fileID: 2166700174834214586}
+  - component: {fileID: 3139709085246651673}
+  - component: {fileID: 6387963966674626041}
   m_Layer: 0
   m_Name: FusionRunner
   m_TagString: Untagged
@@ -57,3 +59,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935de034d41f14c4c95f6962fca14fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FusionFoundry.Runtime::FusionFoundry.Sessions.FusionSessionController
+--- !u!114 &3139709085246651673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720789917853774400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff21e33e8e1ea14ca998d6c4f99942b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FusionFoundry.Runtime::FusionFoundry.Spawning.NetworkPlayerSpawner
+  playerPrefab: {fileID: 1788000555792496647, guid: 9ea9bc036dc71f44995fcea86f832a76, type: 3}
+  spawnPointRootName: SpawnPoints
+  fallbackSpacing: 2.5
+--- !u!114 &6387963966674626041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720789917853774400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ad0e8793fe4b543a0b6294837d148a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FusionFoundry.Runtime::FusionFoundry.Input.FusionInputProvider
+  moveAction: {fileID: -6525075223335364098, guid: ecabd07e398d3c048b8b0efc4a865e03, type: 3}
