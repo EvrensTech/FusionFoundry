@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">FusionFoundry — Evrens branded multiplayer demo</title>
+  <desc id="desc">A polished preview of the FusionFoundry room creation interface using the Evrens teal brand palette.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#17383a"/>
+      <stop offset="0.55" stop-color="#0d2527"/>
+      <stop offset="1" stop-color="#071314"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0" stop-color="#397276" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#071314" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020809" flood-opacity=".65"/>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <circle cx="1370" cy="155" r="130" fill="#397276" opacity=".08"/>
+  <circle cx="225" cy="735" r="190" fill="#275457" opacity=".1"/>
+  <path d="M0 690 L330 500 L570 610 L835 420 L1120 585 L1600 390 L1600 900 L0 900Z" fill="#0b2021" opacity=".8"/>
+  <path d="M0 760 L405 565 L680 720 L960 535 L1240 690 L1600 515" fill="none" stroke="#397276" stroke-opacity=".14" stroke-width="3"/>
+  <g opacity=".22" fill="#a9c1c0">
+    <circle cx="134" cy="172" r="2"/><circle cx="320" cy="120" r="3"/><circle cx="1290" cy="286" r="2"/>
+    <circle cx="1455" cy="420" r="2"/><circle cx="1080" cy="125" r="2"/><circle cx="510" cy="295" r="2"/>
+  </g>
+
+  <g transform="translate(34 28)">
+    <rect width="52" height="60" rx="4" fill="#275457"/>
+    <text x="26" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="38" fill="#fff">E</text>
+  </g>
+  <text x="104" y="67" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3" fill="#a9c1c0">EVRENS TECH DEMO</text>
+  <g transform="translate(1390 40)">
+    <rect width="170" height="36" rx="18" fill="#17383a" stroke="#397276" stroke-opacity=".55"/>
+    <circle cx="22" cy="18" r="5" fill="#70d6a7"/>
+    <text x="38" y="23" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#d8e5e4">PHOTON READY</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="470" y="128" width="660" height="650" rx="26" fill="#102a2c" stroke="#397276" stroke-opacity=".35"/>
+    <rect x="471" y="129" width="658" height="7" rx="4" fill="#275457"/>
+  </g>
+
+  <g transform="translate(641 184)">
+    <rect width="66" height="76" rx="5" fill="#275457"/>
+    <text x="33" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="49" fill="#fff">E</text>
+    <text x="86" y="57" font-family="Arial, sans-serif" font-size="53" font-weight="800" fill="#275457">evrens</text>
+  </g>
+
+  <text x="800" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="46" fill="#f7faf9">FusionFoundry</text>
+  <text x="800" y="367" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="2.3" fill="#a9c1c0">MULTIPLAYER SESSION LAB</text>
+  <line x1="550" y1="398" x2="1050" y2="398" stroke="#397276" stroke-opacity=".35"/>
+
+  <g transform="translate(570 435)">
+    <rect width="460" height="72" rx="12" fill="#275457"/>
+    <circle cx="36" cy="36" r="15" fill="#f7faf9" opacity=".18"/>
+    <path d="M31 36h10M36 31v10" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="230" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#fff">Create Room</text>
+    <path d="M418 36h12m-5-5 5 5-5 5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(570 527)">
+    <rect width="460" height="72" rx="12" fill="#17383a" stroke="#397276" stroke-opacity=".7"/>
+    <path d="M30 30h15v15H30zM35 26h15v15" fill="none" stroke="#a9c1c0" stroke-width="2"/>
+    <text x="230" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#f7faf9">Join with Room Code</text>
+  </g>
+
+  <g transform="translate(585 635)">
+    <circle cx="9" cy="8" r="8" fill="#275457"/>
+    <path d="m5 8 3 3 5-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="26" y="13" font-family="Arial, sans-serif" font-size="14" fill="#a9c1c0">Private room code</text>
+    <circle cx="184" cy="8" r="8" fill="#275457"/>
+    <path d="m180 8 3 3 5-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="201" y="13" font-family="Arial, sans-serif" font-size="14" fill="#a9c1c0">Host / Client</text>
+  </g>
+  <text x="800" y="721" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" letter-spacing="1" fill="#6f9594">UNITY 6  ·  PHOTON FUSION  ·  EVRENS TECH</text>
+
+  <text x="800" y="848" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" letter-spacing="2" fill="#a9c1c0">TECH.EVRENS.NET</text>
+</svg>

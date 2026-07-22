@@ -12,6 +12,8 @@
 
 **Unity 6 ve Photon Fusion ile oda kodu tabanlı multiplayer oturumları için yeniden kullanılabilir bir başlangıç altyapısı ve çalışan demo.**
 
+![FusionFoundry Evrens markalı demo arayüzü](Docs/fusionfoundry-evrens-demo.svg)
+
 FusionFoundry, **Evrens Tech** tarafından geliştirilen Unity teknik demo portföyünün bir parçasıdır. Projenin amacı yalnızca örnek bir multiplayer sahnesi sunmak değil; mevcut Unity projelerine multiplayer dönüşümü, ağ mimarisi, oyuncu yaşam döngüsü ve proje bazlı geliştirme desteği sağlayabilecek teknik yetkinliği çalışan bir sistemle göstermektir.
 
 ## Demo ne gösteriyor?
@@ -197,6 +199,8 @@ Detaylı bilgi, FusionFoundry geliştirme talepleri, mevcut bir Unity projesinin
 # FusionFoundry — English
 
 **A reusable foundation and working demo for room-code-based multiplayer sessions built with Unity 6 and Photon Fusion.**
+
+![FusionFoundry branded demo interface by Evrens](Docs/fusionfoundry-evrens-demo.svg)
 
 FusionFoundry is part of the Unity technical demo portfolio developed by **Evrens Tech**. Its purpose is not limited to presenting a sample multiplayer scene. It demonstrates, through a working system, the technical capability required to provide multiplayer conversion, network architecture, player lifecycle, and project-based development support for existing Unity projects.
 

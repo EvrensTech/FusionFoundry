@@ -98,6 +98,8 @@ namespace FusionFoundry.Samples.BasicHostClient
                 return;
             }
 
+            EvrensBrandTheme.Apply(transform);
+
             createButton.onClick.AddListener(HandleCreateClicked);
             openJoinButton.onClick.AddListener(HandleOpenJoinClicked);
             joinButton.onClick.AddListener(HandleJoinClicked);
