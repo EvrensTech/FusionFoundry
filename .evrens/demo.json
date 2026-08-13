@@ -49,7 +49,7 @@
     "video": {
       "provider": "youtube",
       "url": "https://youtu.be/0ToBBDIf0CM",
-      "durationSeconds": 49.2
+      "durationSeconds": 49
     },
     "coverImageUrl": "https://raw.githubusercontent.com/EvrensTech/FusionFoundry/main/DuelProtocol_Cover.png"
   },
