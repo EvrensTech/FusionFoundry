@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6397749333094322380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6768676355529245080}
+  - component: {fileID: 1786669548944111512}
+  - component: {fileID: 4018314508818569312}
+  - component: {fileID: 4166183484307394459}
+  - component: {fileID: 1371547153284289031}
+  - component: {fileID: 4775291821674035745}
+  - component: {fileID: 3469205856789905713}
+  m_Layer: 0
+  m_Name: DuelNetworkRunner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6768676355529245080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786669548944111512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1199893898, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkRunner
+--- !u!114 &4018314508818569312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935de034d41f14c4c95f6962fca14fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FusionFoundry.Runtime::FusionFoundry.Sessions.FusionSessionController
+  fixedRegion: eu
+--- !u!114 &4166183484307394459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff21e33e8e1ea14ca998d6c4f99942b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FusionFoundry.Runtime::FusionFoundry.Spawning.NetworkPlayerSpawner
+  playerPrefab: {fileID: 5224664778205580882, guid: b882c9548b90f1d488645939d1e2ae90, type: 3}
+  spawnPointRootName: SpawnPoints
+  fallbackSpacing: 2.5
+  reconnectGraceSeconds: 20
+--- !u!114 &1371547153284289031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3592ee605b975c4c9e2f851499397b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DuelProtocol.Runtime::DuelProtocol.Gameplay.LocalDuelCommandSource
+  inputActions: {fileID: 0}
+--- !u!114 &4775291821674035745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b32353e93d879604bbd9e087e4994381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FusionFoundry.Integrations.DuelProtocol::DuelProtocol.Networking.DuelNetworkInputProvider
+  commandSource: {fileID: 1371547153284289031}
+--- !u!114 &3469205856789905713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397749333094322380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f0b568f3d130642ac2d46079c95aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FusionFoundry.Integrations.DuelProtocol::DuelProtocol.Networking.DuelNetworkWorldSpawner
+  worldPrefab: {fileID: 4767978508783316088, guid: 57357a98891f1e748b88c67a6e91f9f5, type: 3}
+  regulationSeconds: 180
+  reconnectGraceSeconds: 20

@@ -19,7 +19,8 @@ namespace FusionFoundry.Tests.Sessions
 
         [TestCase("ABCdef")]
         [TestCase("abcDEF")]
-        [TestCase("234567")]
+        [TestCase("012345")]
+        [TestCase("O1Il0o")]
         [TestCase("89GHjk")]
         public void IsValid_AcceptsAllowedCharacters(string code)
         {
@@ -30,18 +31,21 @@ namespace FusionFoundry.Tests.Sessions
         [TestCase("")]
         [TestCase("ABCDE")]
         [TestCase("ABCDEFG")]
-        [TestCase("ABC0de")]
-        [TestCase("ABCOde")]
-        [TestCase("ABC1de")]
-        [TestCase("ABclde")]
-        [TestCase("ABCIde")]
         [TestCase("ABC-de")]
         [TestCase("ABC de")]
         [TestCase(" ABCde")]
         [TestCase("ABCde ")]
+        [TestCase("ABCdéf")]
         public void IsValid_RejectsInvalidCode(string code)
         {
             Assert.That(RoomCodeGenerator.IsValid(code), Is.False);
+        }
+
+        [Test]
+        public void SanitizeInput_PreservesCaseAndDigitsWithoutNormalizingSessionId()
+        {
+            Assert.That(RoomCodeGenerator.SanitizeInput("aB1-cD2 extra"), Is.EqualTo("aB1cD2"));
+            Assert.That(RoomCodeGenerator.SanitizeInput("XyZ019"), Is.EqualTo("XyZ019"));
         }
     }
 }

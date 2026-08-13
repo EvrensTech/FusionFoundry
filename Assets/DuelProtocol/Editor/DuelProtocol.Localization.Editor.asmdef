@@ -1,0 +1,20 @@
+{
+  "name": "DuelProtocol.Localization.Editor",
+  "rootNamespace": "DuelProtocol.Editor",
+  "references": [
+    "DuelProtocol.Runtime",
+    "Unity.Localization",
+    "Unity.Localization.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

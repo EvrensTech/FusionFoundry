@@ -1,0 +1,21 @@
+{
+  "name": "FusionFoundry.Integrations.DuelProtocol",
+  "rootNamespace": "FusionFoundry.Integrations.DuelProtocol",
+  "references": [
+    "DuelProtocol.Runtime",
+    "FusionFoundry.Runtime",
+    "Fusion.Unity",
+    "Photon.Realtime",
+    "Unity.InputSystem",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

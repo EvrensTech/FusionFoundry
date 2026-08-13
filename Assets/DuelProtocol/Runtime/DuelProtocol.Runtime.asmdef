@@ -1,0 +1,25 @@
+{
+  "name": "DuelProtocol.Runtime",
+  "rootNamespace": "DuelProtocol",
+  "references": [
+    "Unity.InputSystem",
+    "Unity.Localization",
+    "Unity.ugui",
+    "Unity.Services.Core",
+    "Unity.Services.Core.Environments",
+    "Unity.Services.Authentication",
+    "Unity.Services.CloudCode",
+    "Unity.Services.CloudSave",
+    "Unity.Services.Leaderboards",
+    "Unity.Services.Analytics"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

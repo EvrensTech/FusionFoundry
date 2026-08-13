@@ -1,0 +1,121 @@
+name: Duel Protocol validation
+
+on:
+  push:
+    branches: [main, feature/duel-protocol]
+  pull_request:
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate Cloud Code domain and deploy scripts
+        run: |
+          node Backend/CloudCode/duel-domain.test.js
+          node --check Backend/CloudCode/Deploy/CreateMatchTicket.js
+          node --check Backend/CloudCode/Deploy/GetDuelProfile.js
+          node --check Backend/CloudCode/Deploy/SubmitMatchResult.js
+          node --check Backend/CloudCode/Deploy/UpdateDuelPreferences.js
+
+  unity-editmode:
+    needs: backend-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          unityVersion: 6000.5.4f1
+          testMode: editmode
+          artifactsPath: TestResults/EditMode
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: duel-editmode-results
+          path: TestResults/EditMode
+
+  unity-playmode:
+    needs: backend-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          unityVersion: 6000.5.4f1
+          testMode: playmode
+          artifactsPath: TestResults/PlayMode
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: duel-playmode-results
+          path: TestResults/PlayMode
+
+  windows-build:
+    needs: [unity-editmode, unity-playmode]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          unityVersion: 6000.5.4f1
+          targetPlatform: StandaloneWindows64
+          buildMethod: DuelProtocol.Editor.DuelProtocolBuildTools.BuildWindows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: duel-windows
+          path: Builds/Windows
+
+  android-build:
+    needs: [unity-editmode, unity-playmode]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          unityVersion: 6000.5.4f1
+          targetPlatform: Android
+          androidExportType: androidPackage
+          buildMethod: DuelProtocol.Editor.DuelProtocolBuildTools.BuildAndroid
+      - uses: actions/upload-artifact@v4
+        with:
+          name: duel-android
+          path: Builds/Android/DuelProtocol.apk
+
+  two-instance-verification:
+    needs: windows-build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: duel-windows
+          path: Builds/Windows
+      - name: Verify room, rematch and reconnect flows
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path Logs -Force | Out-Null
+          & Tools/Run-DuelRematchVerification.ps1 -TimeoutSeconds 60
+          & Tools/Run-DuelTwoClientVerification.ps1 -StartupTimeoutSeconds 30 -ForfeitTimeoutSeconds 52

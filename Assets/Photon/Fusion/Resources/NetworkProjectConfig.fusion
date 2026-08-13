@@ -94,6 +94,7 @@
     "AssembliesToWeave": [
         "Assembly-CSharp",
         "Assembly-CSharp-firstpass",
+        "FusionFoundry.Integrations.DuelProtocol",
         "FusionFoundry.Runtime",
         "FusionFoundry.Samples.BasicHostClient"
     ],

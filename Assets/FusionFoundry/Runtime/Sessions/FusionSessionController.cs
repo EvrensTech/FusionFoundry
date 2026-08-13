@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Fusion;
+using Fusion.Photon.Realtime;
 using UnityEngine;
 
 namespace FusionFoundry.Sessions
@@ -13,6 +14,9 @@ namespace FusionFoundry.Sessions
         private NetworkSceneManagerDefault _sceneManager;
         private bool _startAttempted;
         private bool _shutdownNotified;
+
+        [SerializeField]
+        private string fixedRegion = string.Empty;
 
         public event Action<FusionSessionController> ShutdownOccurred;
 
@@ -63,14 +67,36 @@ namespace FusionFoundry.Sessions
             {
                 GameMode = request.Mode,
                 SessionName = request.SessionName,
-                SceneManager = _sceneManager
+                SceneManager = _sceneManager,
+                PlayerUniqueId = request.PlayerUniqueId,
+                ConnectionToken = request.ConnectionToken,
+                IsVisible = request.IsVisible,
+                IsOpen = request.IsOpen
             };
+
+            var sessionProperties = request.SessionProperties;
+            if (sessionProperties != null)
+            {
+                startGameArgs.SessionProperties =
+                    new System.Collections.Generic.Dictionary<string, SessionProperty>(
+                        sessionProperties);
+            }
+
+            if (!string.IsNullOrWhiteSpace(fixedRegion))
+            {
+                var appSettings = PhotonAppSettings.Global.AppSettings.GetCopy();
+                appSettings.FixedRegion = fixedRegion.Trim().ToLowerInvariant();
+                startGameArgs.CustomPhotonAppSettings = appSettings;
+            }
 
             if (request.Mode == GameMode.Host)
             {
-                startGameArgs.PlayerCount = request.MaxPlayers;
-                startGameArgs.IsOpen = true;
-                startGameArgs.IsVisible = false;
+                // Private rooms keep one transport-only reconnect slot while
+                // matchmaking rooms use the exact advertised two-player cap.
+                startGameArgs.PlayerCount = request.MaxPlayers +
+                                            (request.ReserveReconnectSlot ? 1 : 0);
+                startGameArgs.IsOpen = request.IsOpen;
+                startGameArgs.IsVisible = request.IsVisible;
             }
             else if (request.Mode == GameMode.Client)
             {

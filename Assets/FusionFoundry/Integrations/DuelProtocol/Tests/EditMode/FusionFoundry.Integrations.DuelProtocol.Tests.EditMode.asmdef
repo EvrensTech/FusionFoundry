@@ -1,0 +1,26 @@
+{
+  "name": "FusionFoundry.Integrations.DuelProtocol.Tests.EditMode",
+  "rootNamespace": "FusionFoundry.Integrations.DuelProtocol.Tests",
+  "references": [
+    "DuelProtocol.Runtime",
+    "FusionFoundry.Runtime",
+    "FusionFoundry.Integrations.DuelProtocol",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "Fusion.Realtime.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

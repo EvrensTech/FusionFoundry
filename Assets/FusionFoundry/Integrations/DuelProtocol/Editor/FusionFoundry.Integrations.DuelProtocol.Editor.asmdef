@@ -1,0 +1,23 @@
+{
+  "name": "FusionFoundry.Integrations.DuelProtocol.Editor",
+  "rootNamespace": "FusionFoundry.Integrations.DuelProtocol.Editor",
+  "references": [
+    "DuelProtocol.Runtime",
+    "FusionFoundry.Runtime",
+    "FusionFoundry.Integrations.DuelProtocol",
+    "Unity.Addressables.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Fusion.Runtime.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

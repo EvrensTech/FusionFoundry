@@ -108,7 +108,10 @@ namespace FusionFoundry.Samples.BasicHostClient
                 background.color = TextPrimary;
             }
 
-            input.textComponent.color = InputText;
+            if (input.textComponent != null)
+            {
+                input.textComponent.color = InputText;
+            }
             input.caretColor = Brand;
             input.selectionColor = WithAlpha(BrandHover, 0.45f);
             if (input.placeholder is Text placeholder)

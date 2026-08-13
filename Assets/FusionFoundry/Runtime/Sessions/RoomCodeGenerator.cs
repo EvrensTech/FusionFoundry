@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Text;
 
 namespace FusionFoundry.Sessions
 {
@@ -7,7 +8,7 @@ namespace FusionFoundry.Sessions
         public const int CodeLength = 6;
 
         private const string AllowedCharacters =
-            "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public static string Generate()
         {
@@ -48,6 +49,30 @@ namespace FusionFoundry.Sessions
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Preserves Photon session-name casing while limiting pasted or typed input to six
+        /// ASCII alphanumeric characters. Invalid characters are discarded, never normalized.
+        /// </summary>
+        public static string SanitizeInput(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return string.Empty;
+            var result = new StringBuilder(CodeLength);
+            foreach (var character in value)
+            {
+                if (!IsAllowed(character)) continue;
+                result.Append(character);
+                if (result.Length == CodeLength) break;
+            }
+            return result.ToString();
+        }
+
+        private static bool IsAllowed(char character)
+        {
+            return character >= 'A' && character <= 'Z' ||
+                   character >= 'a' && character <= 'z' ||
+                   character >= '0' && character <= '9';
         }
     }
 }

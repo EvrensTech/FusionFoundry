@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fusion;
 using FusionFoundry.Sessions;
@@ -20,8 +21,17 @@ namespace FusionFoundry.Spawning
         [Min(0.1f)]
         private float fallbackSpacing = 2.5f;
 
+        [SerializeField]
+        [Min(0f)]
+        private float reconnectGraceSeconds;
+
         private readonly Dictionary<PlayerRef, NetworkObject> _spawnedPlayers =
             new Dictionary<PlayerRef, NetworkObject>();
+        private readonly Dictionary<PlayerRef, string> _playerTokens =
+            new Dictionary<PlayerRef, string>();
+        private readonly Dictionary<string, ReconnectReservation> _reconnectReservations =
+            new Dictionary<string, ReconnectReservation>();
+        private NetworkRunner _runner;
 
         public NetworkObject PlayerPrefab => playerPrefab;
 
@@ -29,9 +39,31 @@ namespace FusionFoundry.Spawning
 
         public override void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
+            _runner = runner;
             if (!CanManagePlayers(runner) || playerPrefab == null)
             {
                 return;
+            }
+
+            var tokenKey = reconnectGraceSeconds > 0f
+                ? GetConnectionTokenKey(runner, player)
+                : string.Empty;
+            if (!string.IsNullOrEmpty(tokenKey))
+            {
+                _playerTokens[player] = tokenKey;
+                if (_reconnectReservations.TryGetValue(tokenKey, out var reservation) &&
+                    reservation.PlayerObject != null &&
+                    runner.SimulationTime <= reservation.ExpiresAt)
+                {
+                    reservation.PlayerObject.AssignInputAuthority(player);
+                    SetPlayerObject(runner, player, reservation.PlayerObject);
+                    _spawnedPlayers[player] = reservation.PlayerObject;
+                    _reconnectReservations.Remove(tokenKey);
+                    Debug.Log(
+                        $"DUEL_NETWORK_PLAYER_RESTORED player={player} " +
+                        $"object={reservation.PlayerObject.Id}");
+                    return;
+                }
             }
 
             if (_spawnedPlayers.TryGetValue(player, out var trackedObject) &&
@@ -80,6 +112,21 @@ namespace FusionFoundry.Spawning
 
             _spawnedPlayers.Remove(player);
 
+            _playerTokens.TryGetValue(player, out var tokenKey);
+            _playerTokens.Remove(player);
+
+            if (playerObject != null && reconnectGraceSeconds > 0f && !string.IsNullOrEmpty(tokenKey))
+            {
+                playerObject.RemoveInputAuthority();
+                _reconnectReservations[tokenKey] = new ReconnectReservation(
+                    playerObject,
+                    runner.SimulationTime + reconnectGraceSeconds);
+                Debug.Log(
+                    $"DUEL_NETWORK_PLAYER_RESERVED player={player} object={playerObject.Id} " +
+                    $"seconds={reconnectGraceSeconds:0}");
+                return;
+            }
+
             if (playerObject != null)
             {
                 DespawnPlayer(runner, playerObject);
@@ -89,6 +136,36 @@ namespace FusionFoundry.Spawning
         public override void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
             _spawnedPlayers.Clear();
+            _playerTokens.Clear();
+            _reconnectReservations.Clear();
+            _runner = null;
+        }
+
+        private void Update()
+        {
+            if (_runner == null || !_runner.IsRunning || !_runner.IsServer ||
+                _reconnectReservations.Count == 0)
+            {
+                return;
+            }
+
+            List<string> expiredKeys = null;
+            foreach (var pair in _reconnectReservations)
+            {
+                if (_runner.SimulationTime < pair.Value.ExpiresAt) continue;
+                if (pair.Value.PlayerObject != null)
+                {
+                    DespawnPlayer(_runner, pair.Value.PlayerObject);
+                }
+                if (expiredKeys == null) expiredKeys = new List<string>();
+                expiredKeys.Add(pair.Key);
+            }
+
+            if (expiredKeys == null) return;
+            foreach (var key in expiredKeys)
+            {
+                _reconnectReservations.Remove(key);
+            }
         }
 
         public bool TryGetTrackedPlayerObject(
@@ -185,6 +262,26 @@ namespace FusionFoundry.Spawning
         {
             var remainder = value % divisor;
             return remainder < 0 ? remainder + divisor : remainder;
+        }
+
+        private static string GetConnectionTokenKey(NetworkRunner runner, PlayerRef player)
+        {
+            var token = runner.GetPlayerConnectionToken(player);
+            return token == null || token.Length == 0
+                ? string.Empty
+                : Convert.ToBase64String(token);
+        }
+
+        private readonly struct ReconnectReservation
+        {
+            public ReconnectReservation(NetworkObject playerObject, double expiresAt)
+            {
+                PlayerObject = playerObject;
+                ExpiresAt = expiresAt;
+            }
+
+            public NetworkObject PlayerObject { get; }
+            public double ExpiresAt { get; }
         }
     }
 }

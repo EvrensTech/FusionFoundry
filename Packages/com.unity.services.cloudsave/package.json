@@ -1,0 +1,49 @@
+{
+  "name": "com.unity.services.cloudsave",
+  "displayName": "Cloud Save",
+  "version": "3.4.1",
+  "unity": "2022.3",
+  "description": "Build better player experiences with seamless game data stored securely in the cloud.\n\nUse Cloud Save to store your players’ progress and preferences, by doing so you can share this data between all the players’ devices and any game backend services.",
+  "dependencies": {
+    "com.unity.services.authentication": "3.3.1",
+    "com.unity.services.core": "1.12.5"
+  },
+  "samples": [
+    {
+      "displayName": "Cloud Save Sample Script",
+      "description": "Example script demonstrating the Cloud Save package.",
+      "path": "Samples~/Basic Example"
+    }
+  ],
+  "_upm": {
+    "gameService": {
+      "genericDashboardUrl": "https://dashboard.unity3d.com/gaming/cloud-save",
+      "projectDashboardUrl": "https://dashboard.unity3d.com/organizations/{0}/projects/{1}/cloud-save/about",
+      "projectDashboardUrlType": "OrganizationKeyAndProjectGuid",
+      "groupId": "game-backend"
+    },
+    "supportedPlatforms": [
+      "Android",
+      "iOS",
+      "Linux",
+      "Mac",
+      "PC",
+      "Windows 8 Universal",
+      "Windows 10 Universal"
+    ],
+    "changelog": "### Changed\n* Updated the minimum supported Editor version to 2022.3.\n\n### Fixed\n* Fixed the generated `*OneOfJsonConverter` types throwing `NotImplementedException` from `CanConvert`. This could break unrelated Newtonsoft serialization when the converters were discovered through a global converter list (e.g. via reflection-based converter scanning)."
+  },
+  "relatedPackages": {
+    "com.unity.services.cloudsave.tests": "3.4.1"
+  },
+  "upmCi": {
+    "footprint": "0be877a99f3ee0c984b6624377486c3173118128"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.services.cloudsave@3.4/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/operate-services-sdk.git",
+    "type": "git",
+    "revision": "c68ef7638c04988d5ab34fb8f7d943c2592e4634"
+  },
+  "_fingerprint": "53bc6d7e30698e4202789016ece15f31bb0e54f1"
+}

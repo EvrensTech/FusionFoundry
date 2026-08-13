@@ -1,0 +1,17 @@
+{
+  "name": "DuelProtocol.Monetization.LevelPlay",
+  "rootNamespace": "DuelProtocol.Monetization.LevelPlay",
+  "references": [
+    "DuelProtocol.Runtime",
+    "Unity.LevelPlay"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

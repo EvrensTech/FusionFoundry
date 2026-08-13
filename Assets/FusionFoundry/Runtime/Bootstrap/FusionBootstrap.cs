@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Fusion;
 using FusionFoundry.Sessions;
 using UnityEngine;
 
@@ -23,6 +25,8 @@ namespace FusionFoundry.Bootstrap
 
         public string ActiveRoomCode { get; private set; } = string.Empty;
 
+        public NetworkRunner ActiveRunner => _activeController?.Runner;
+
         public async Task<FusionSessionStartResult> CreateSessionAsync()
         {
             if (!CanStartSession(out var rejection))
@@ -44,6 +48,17 @@ namespace FusionFoundry.Bootstrap
 
         public async Task<FusionSessionStartResult> JoinSessionAsync(string roomCode)
         {
+            var token = Guid.NewGuid().ToByteArray();
+            var playerUniqueId = BitConverter.ToInt64(token, 0);
+            if (playerUniqueId == 0L) playerUniqueId = 1L;
+            return await JoinSessionAsync(roomCode, playerUniqueId, token);
+        }
+
+        public async Task<FusionSessionStartResult> JoinSessionAsync(
+            string roomCode,
+            long playerUniqueId,
+            byte[] connectionToken)
+        {
             if (!CanStartSession(out var rejection))
             {
                 return rejection;
@@ -57,7 +72,53 @@ namespace FusionFoundry.Bootstrap
                     "InvalidRoomCode");
             }
 
-            var request = FusionSessionRequest.ForClient(normalizedRoomCode);
+            FusionSessionRequest request;
+            try
+            {
+                request = FusionSessionRequest.ForClient(
+                    normalizedRoomCode,
+                    playerUniqueId,
+                    connectionToken);
+            }
+            catch (ArgumentException exception)
+            {
+                return FusionSessionStartResult.Failed(
+                    "The reconnect credentials are invalid.",
+                    "InvalidReconnectCredentials",
+                    exception.Message);
+            }
+            return await StartSessionAsync(request);
+        }
+
+        public async Task<FusionSessionStartResult> CreateMatchmakingSessionAsync(
+            IReadOnlyDictionary<string, SessionProperty> sessionProperties)
+        {
+            if (!CanStartSession(out var rejection))
+            {
+                return rejection;
+            }
+            if (defaultMaxPlayers <= 0)
+            {
+                return FusionSessionStartResult.Failed(
+                    "Maximum player count must be greater than zero.",
+                    "InvalidMaxPlayers");
+            }
+
+            FusionSessionRequest request;
+            try
+            {
+                request = FusionSessionRequest.ForMatchmakingHost(
+                    RoomCodeGenerator.Generate(),
+                    defaultMaxPlayers,
+                    sessionProperties);
+            }
+            catch (ArgumentException exception)
+            {
+                return FusionSessionStartResult.Failed(
+                    "The matchmaking session configuration is invalid.",
+                    "InvalidMatchmakingProperties",
+                    exception.Message);
+            }
             return await StartSessionAsync(request);
         }
 

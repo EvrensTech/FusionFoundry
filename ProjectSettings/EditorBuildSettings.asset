@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FusionFoundry/Samples/BasicHostClient/Scenes/BasicHostClient.unity
-    guid: 40452c34964dc454bacbc7911762fe84
+    path: Assets/DuelProtocol/Scenes/DuelFrontEnd.unity
+    guid: 95561a92af7f75c43b94d43560c2439a
+  - enabled: 1
+    path: Assets/DuelProtocol/Scenes/DuelProtocolNetwork.unity
+    guid: f0afa013983f18b408527a61c9a4ae38
+  - enabled: 1
+    path: Assets/DuelProtocol/Scenes/DuelProtocol.unity
+    guid: dc284207be9d9404d8bf4ce6979a9c0a
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8df73ef8eb1a4cd4ebf546015fc2669e, type: 2}
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 893600d10e60d5a4586ad18f88a5cd66, type: 2}

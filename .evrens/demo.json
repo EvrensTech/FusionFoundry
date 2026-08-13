@@ -1,42 +1,66 @@
 {
   "schemaVersion": 1,
-  "slug": "fusion-multiplayer-room",
+  "slug": "duel-protocol-multiplayer-live-services",
   "category": "unity",
   "salesTrack": "unity_support",
   "content": {
     "tr": {
-      "title": "Fusion Multiplayer Oda Akışı",
-      "summary": "Oda oluşturma ve katılma akışını gösteren çalışan Unity demosu.",
-      "problem": "Mevcut projede tekrar kullanılabilir multiplayer lobby akışı bulunmuyor.",
-      "solution": "Fusion tabanlı oda yaşam döngüsü ve senkronizasyon katmanı.",
-      "targetAudience": "Unity kullanan oyun ekipleri",
-      "serviceScope": "İnceleme, entegrasyon ve proje uyarlaması",
-      "adaptationOptions": "Mevcut kullanıcı, lobby ve oyun durumu yapısına uyarlanabilir."
+      "title": "Duel Protocol — Multiplayer ve Live Services Entegrasyonu",
+      "summary": "Singleplayer ve iki oyunculu online düello, kozmetik mağaza, UGS progression ve LevelPlay rewarded mediation akışlarını birleştiren çalışan Unity 6 demosu.",
+      "problem": "Bir düello prototipini multiplayer ürüne dönüştürmek; yalnız ağ bağlantısı değil, authoritative oyun durumu, mobil kontrol, kalıcı profil, mağaza ve reklam sağlayıcılarının birlikte güvenilir çalışmasını gerektirir.",
+      "solution": "Duel Protocol; AI ve Fusion istemcilerini ortak DuelCommand sözleşmesine bağlar, maç durumunu host authority altında yürütür, sonuçları UGS Cloud Code ile doğrular ve rewarded reklamları sağlayıcıdan bağımsız LevelPlay katmanından sunar.",
+      "targetAudience": "Multiplayer, mobil kontrol, UGS backend veya reklam mediation entegrasyonu geliştiren Unity ekipleri",
+      "serviceScope": "Multiplayer dönüşümü, oyun akışı, UGS progression, kozmetik mağaza, rewarded reklam mediation ve platform entegrasyonu",
+      "adaptationOptions": "Arena kuralları, matchmaking, backend profili, skin kataloğu, mağaza ekonomisi, reklam ağları ve PC/Android kontrolleri müşteri oyununa göre uyarlanabilir."
     },
     "en": {
-      "title": "Fusion Multiplayer Room Flow",
-      "summary": "A working Unity demo for room creation and joining."
+      "title": "Duel Protocol — Multiplayer and Live Services Integration",
+      "summary": "A working Unity 6 demo combining single-player and two-player online duels, a cosmetic shop, UGS progression, and LevelPlay rewarded mediation.",
+      "problem": "Turning a duel prototype into a multiplayer product requires more than connectivity: authoritative state, mobile controls, persistent profiles, shop flows, and ad providers must work together reliably.",
+      "solution": "Duel Protocol connects AI and Fusion clients through a shared DuelCommand contract, runs match state under host authority, validates results with UGS Cloud Code, and serves rewarded ads through a provider-independent LevelPlay layer.",
+      "targetAudience": "Unity teams implementing multiplayer, mobile controls, UGS backends, or ad mediation",
+      "serviceScope": "Multiplayer conversion, game flow, UGS progression, cosmetic shops, rewarded-ad mediation, and platform integration",
+      "adaptationOptions": "Arena rules, matchmaking, backend profiles, skin catalogs, store economies, ad networks, and PC/Android controls can be adapted to a client game."
     }
   },
-  "technologies": ["Unity", "Fusion 2"],
-  "industries": ["game-development"],
+  "technologies": [
+    "Unity 6",
+    "C#",
+    "Universal Render Pipeline",
+    "Photon Fusion 2",
+    "Unity Gaming Services",
+    "Cloud Code",
+    "Cloud Save",
+    "Leaderboards",
+    "Unity LevelPlay",
+    "Google AdMob",
+    "Unity Ads"
+  ],
+  "industries": [
+    "game-development",
+    "multiplayer-games",
+    "mobile-games",
+    "live-services",
+    "in-game-shop",
+    "rewarded-advertising"
+  ],
   "demo": {
     "liveUrl": "",
     "video": {
-      "provider": "",
-      "url": "",
-      "durationSeconds": 1
+      "provider": "youtube",
+      "url": "https://youtu.be/0ToBBDIf0CM",
+      "durationSeconds": 49.2
     },
-    "coverImageUrl": "https://raw.githubusercontent.com/EvrensTech/FusionFoundry/057aa8d6f3355023e7e810de702e6719dacdea48/Docs/fusionfoundry-evrens-demo.svg"
+    "coverImageUrl": "https://raw.githubusercontent.com/EvrensTech/FusionFoundry/main/DuelProtocol_Cover.png"
   },
   "seo": {
     "tr": {
-      "title": "Unity Fusion Multiplayer Oda Demosu",
-      "description": "Fusion ile oda oluşturma ve katılma akışını inceleyin."
+      "title": "Unity Multiplayer, UGS ve LevelPlay Entegrasyon Demosu",
+      "description": "Singleplayer ve iki oyunculu düello, Photon Fusion, UGS profil/leaderboard, kozmetik mağaza ve LevelPlay rewarded reklam entegrasyonunu inceleyin."
     },
     "en": {
-      "title": "Unity Fusion Multiplayer Room Demo",
-      "description": "Review a working Fusion room creation and join flow."
+      "title": "Unity Multiplayer, UGS and LevelPlay Integration Demo",
+      "description": "Explore a Unity demo featuring single-player and two-player duels, Photon Fusion, UGS profiles and leaderboards, a cosmetic shop, and LevelPlay rewarded ads."
     }
   }
 }

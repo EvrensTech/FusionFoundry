@@ -1,0 +1,39 @@
+{
+    "name": "DuelInputActions",
+    "maps": [
+        {
+            "name": "Duel",
+            "id": "6f849388-f5a4-475e-97d3-e46ea2d9edda",
+            "actions": [
+                { "name": "Move", "type": "Value", "id": "e56e457c-7785-4f7a-9800-17c765221522", "expectedControlType": "Vector2", "processors": "", "interactions": "", "initialStateCheck": true },
+                { "name": "Aim", "type": "Value", "id": "90bc6195-e696-4f3e-a237-9036007e73d4", "expectedControlType": "Vector2", "processors": "", "interactions": "", "initialStateCheck": true },
+                { "name": "Ability", "type": "Button", "id": "84149da0-e58c-4bdb-a53f-f65ad3ced271", "expectedControlType": "Button", "processors": "", "interactions": "Press", "initialStateCheck": false },
+                { "name": "PointerPosition", "type": "PassThrough", "id": "a4715884-6522-4fa0-ab2d-cfded457d1fd", "expectedControlType": "Vector2", "processors": "", "interactions": "", "initialStateCheck": false }
+            ],
+            "bindings": [
+                { "name": "WASD", "id": "9cf93dce-fad1-45de-9db7-e43af5f5f060", "path": "2DVector", "interactions": "", "processors": "NormalizeVector2", "groups": "KeyboardMouse", "action": "Move", "isComposite": true, "isPartOfComposite": false },
+                { "name": "up", "id": "bd9c1984-c0db-45a1-af39-17282861699f", "path": "<Keyboard>/w", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Move", "isComposite": false, "isPartOfComposite": true },
+                { "name": "down", "id": "805f932f-1030-4acf-b318-c64f52b7bcdf", "path": "<Keyboard>/s", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Move", "isComposite": false, "isPartOfComposite": true },
+                { "name": "left", "id": "7a94a48b-04b9-49ad-b711-fe453ba7517c", "path": "<Keyboard>/a", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Move", "isComposite": false, "isPartOfComposite": true },
+                { "name": "right", "id": "4ba12ef9-8ad7-43ae-b34b-b629356dfb19", "path": "<Keyboard>/d", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Move", "isComposite": false, "isPartOfComposite": true },
+                { "name": "", "id": "d57c8d5b-9163-4ddd-8c3c-bb0cf4ca2e38", "path": "<Gamepad>/leftStick", "interactions": "", "processors": "StickDeadzone", "groups": "Gamepad", "action": "Move", "isComposite": false, "isPartOfComposite": false },
+                { "name": "Arrows", "id": "22bd7de6-4f3e-41cd-915e-d8cdb4fb00e4", "path": "2DVector", "interactions": "", "processors": "NormalizeVector2", "groups": "KeyboardMouse", "action": "Aim", "isComposite": true, "isPartOfComposite": false },
+                { "name": "up", "id": "3d31118a-f25a-451a-a7f2-4fc561390c9c", "path": "<Keyboard>/upArrow", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Aim", "isComposite": false, "isPartOfComposite": true },
+                { "name": "down", "id": "8787dd55-677f-461d-9279-ad39140fec99", "path": "<Keyboard>/downArrow", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Aim", "isComposite": false, "isPartOfComposite": true },
+                { "name": "left", "id": "a304c4db-377c-4373-a355-5f7e68b4bc40", "path": "<Keyboard>/leftArrow", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Aim", "isComposite": false, "isPartOfComposite": true },
+                { "name": "right", "id": "ebbc695e-8dbf-450a-89cb-762487933806", "path": "<Keyboard>/rightArrow", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Aim", "isComposite": false, "isPartOfComposite": true },
+                { "name": "", "id": "e3e59c3c-c166-4d5b-9924-c91df18d51c2", "path": "<Gamepad>/rightStick", "interactions": "", "processors": "StickDeadzone", "groups": "Gamepad", "action": "Aim", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "0d04d7d9-79d1-48c5-9793-eb72c3493236", "path": "<Keyboard>/space", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Ability", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "b05499f6-cd28-4d0d-9238-6aab6be6d108", "path": "<Mouse>/leftButton", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "Ability", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "50333b00-5ceb-4c52-b2f2-18f4dc536f99", "path": "<Gamepad>/buttonSouth", "interactions": "", "processors": "", "groups": "Gamepad", "action": "Ability", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "82a72606-49f0-4f7e-80a0-e23506ac4416", "path": "<Gamepad>/rightTrigger", "interactions": "Press", "processors": "", "groups": "Gamepad", "action": "Ability", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "e2a652e5-4f71-46cd-a8fe-7fcf4114fada", "path": "<Gamepad>/rightShoulder", "interactions": "", "processors": "", "groups": "Gamepad", "action": "Ability", "isComposite": false, "isPartOfComposite": false },
+                { "name": "", "id": "f6612709-a820-4783-a932-d545d6a34fb8", "path": "<Mouse>/position", "interactions": "", "processors": "", "groups": "KeyboardMouse", "action": "PointerPosition", "isComposite": false, "isPartOfComposite": false }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        { "name": "KeyboardMouse", "bindingGroup": "KeyboardMouse", "devices": [ { "devicePath": "<Keyboard>", "isOptional": false, "isOR": false }, { "devicePath": "<Mouse>", "isOptional": true, "isOR": false } ] },
+        { "name": "Gamepad", "bindingGroup": "Gamepad", "devices": [ { "devicePath": "<Gamepad>", "isOptional": false, "isOR": false } ] }
+    ]
+}

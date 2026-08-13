@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b171646543cfe419d8f197079d2552, type: 3}
+  m_Name: DuelContentCatalog
+  m_EditorClassIdentifier: DuelProtocol.Runtime::DuelProtocol.Content.DuelContentCatalog
+  schemaVersion: 1
+  arenas:
+  - Id: energy-core-arena
+    DisplayNameKey: arena.energy_core
+    Bounds: {x: 16, y: 16}
+    CoreSpawnPoints:
+    - {x: 0, y: 0}
+  - Id: energy-core-arena-wide
+    DisplayNameKey: arena.energy_core_wide
+    Bounds: {x: 20, y: 14}
+    CoreSpawnPoints:
+    - {x: 0, y: 0}
+    - {x: -2, y: 0}
+    - {x: 2, y: 0}
+  skins:
+  - Id: default-runner
+    DisplayNameKey: skin.default_runner
+    PrimaryColor: {r: 0.10980392, g: 0.8627451, b: 1, a: 1}
+  - Id: solar-warden
+    DisplayNameKey: skin.solar_warden
+    PrimaryColor: {r: 1, g: 0.74509805, b: 0.21176471, a: 1}
+  - Id: void-runner
+    DisplayNameKey: skin.void_runner
+    PrimaryColor: {r: 0.7137255, g: 0.36862746, b: 1, a: 1}
+  - Id: crimson-reaver
+    DisplayNameKey: skin.crimson_reaver
+    PrimaryColor: {r: 1, g: 0.24705882, b: 0.3372549, a: 1}
+  - Id: arctic-signal
+    DisplayNameKey: skin.arctic_signal
+    PrimaryColor: {r: 0.3372549, g: 0.93333334, b: 1, a: 1}
+  - Id: carbon-elite
+    DisplayNameKey: skin.carbon_elite
+    PrimaryColor: {r: 0.2901961, g: 0.90588236, b: 0.60784316, a: 1}
+  abilities:
+  - Id: pulse
+    DisplayNameKey: ability.pulse
+    CooldownSeconds: 3
+    Range: 2.25
+  matchRules:
+  - Id: standard
+    DisplayNameKey: rules.standard
+    ScoreLimit: 3
+    RegulationSeconds: 180
+    OvertimeSeconds: 60
+  localization:
+  - Key: arena.energy_core
+    Turkish: "Enerji \xC7ekirde\u011Fi Arenas\u0131"
+    English: Energy Core Arena
+  - Key: arena.energy_core_wide
+    Turkish: "Geni\u015F Enerji Arenas\u0131"
+    English: Wide Energy Arena
+  - Key: skin.default_runner
+    Turkish: "Protokol S\u0131f\u0131r"
+    English: Protocol Zero
+  - Key: skin.solar_warden
+    Turkish: "G\xFCne\u015F Muhaf\u0131z\u0131"
+    English: Solar Warden
+  - Key: skin.void_runner
+    Turkish: "Bo\u015Fluk Ko\u015Fucusu"
+    English: Void Runner
+  - Key: skin.crimson_reaver
+    Turkish: "K\u0131z\u0131l Ak\u0131nc\u0131"
+    English: Crimson Reaver
+  - Key: skin.arctic_signal
+    Turkish: Arktik Sinyal
+    English: Arctic Signal
+  - Key: skin.carbon_elite
+    Turkish: Karbon Elit
+    English: Carbon Elite
+  - Key: ability.pulse
+    Turkish: "Darbe Dalgas\u0131"
+    English: Pulse
+  - Key: rules.standard
+    Turkish: "Standart D\xFCello"
+    English: Standard Duel
+  - Key: match.rematch
+    Turkish: "Yeniden Ma\xE7"
+    English: Rematch

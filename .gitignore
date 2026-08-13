@@ -16,9 +16,43 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+[Bb]uild/
+[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 *.log
+
+# Local delivery evidence and generated documentation are not published.
+/[Dd]ocs/
+[Dd]ocs/
+/[Tt]est[Rr]esults/
+/.promo/
+[Tt]ools/
+*.mp4
+
+# Provider identifiers are developer-local. Keep the C# settings types in source,
+# but never publish populated Unity assets containing Photon, LevelPlay or AdMob IDs.
+/[Aa]ssets/[Dd]uel[Pp]rotocol/[Rr]esources/DuelAdsSettings.asset
+/[Aa]ssets/[Dd]uel[Pp]rotocol/[Rr]esources/DuelAdsSettings.asset.meta
+/[Aa]ssets/[Ll]evel[Pp]lay/[Rr]esources/LevelPlayMediatedNetworkSettings.asset
+/[Aa]ssets/[Ll]evel[Pp]lay/[Rr]esources/LevelPlayMediatedNetworkSettings.asset.meta
+/[Aa]ssets/[Pp]hoton/[Ff]usion/[Rr]esources/PhotonAppSettings.asset
+
+# Common local credentials and signing material.
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.pfx
+google-services.json
+GoogleService-Info.plist
+service-account*.json
+credentials*.json
+secrets.*
+*.secrets.json
+*.local.json
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be committed to version control.
 *.blend1

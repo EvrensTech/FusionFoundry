@@ -3,7 +3,8 @@
     "rootNamespace": "FusionFoundry",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:1baf1ffff1031e948b3b228ab3453251"
+        "GUID:1baf1ffff1031e948b3b228ab3453251",
+        "Photon.Realtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
