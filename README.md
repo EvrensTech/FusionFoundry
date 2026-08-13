@@ -8,7 +8,7 @@
 
 [Türkçe](#türkçe) · [English](#english)
 
-[▶ Tanıtım videosu / Watch the trailer](DuelProtocol_Trailer.mp4)
+[▶ Tanıtım videosu / Watch the trailer](https://youtu.be/0ToBBDIf0CM)
 
 </div>
 
